@@ -1,24 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import './index.css';
+import {BrowserRouter, Routes, Route } from "react-router-dom";
+import Text from "./routes/Text";
+import Excel from "./routes/Home";
+import Csv from "./routes/Csv";
+import Json from "./routes/Json";
+import Jpg from "./routes/Jpg";
+import Png from "./routes/Png";
+
+import Convert from "./routes/Convert";
+import { ContextProvider } from "./ContextApi";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Excel />} />
+          <Route path="pdf-to-txt" element={<Text />} />
+          <Route path="pdf-to-csv" element={<Csv />} />
+          <Route path="pdf-to-json" element={<Json />} />
+          <Route path="pdf-to-jpg" element={<Jpg />} />
+          <Route path="convert" element={<Convert />} />
+          <Route path="pdf-to-png" element={<Png />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
   );
 }
 
